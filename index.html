@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
     <title>Firebase - Authentication</title>
     <link
       rel="shortcut icon"
@@ -17,53 +15,58 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
   </head>
-  <body class="grey lighten-3">
-    <nav class="z-depth-0 indigo lighten-4">
+  <style>
+    body {
+      background-color: #f2f2f2;
+    }
+  </style>
+  <body>
+    <nav class="z-depth-0 indigo">
       <div class="nav-wrapper container">
         <a href="#" class="brand-logo">
-          <img src="img/logo.png" style="width: 50px; margin-top: 5px" />
+          <img src="https://cdn4.iconfinder.com/data/icons/google-i-o-2016/512/google_firebase-2-512.png" style="width: 50px; margin-top: 5px" />
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li class="logged-in" style="display: none">
+          <li class="logged-in">
             <a
               href="#"
-              class="red-text modal-trigger"
+              class="" modal-trigger
               data-target="modal-account"
               >Your Account</a
             >
           </li>
-          <li class="logged-in" style="display: none">
-            <a href="#" class="red-text" id="logout">Exıt</a>
+          <li class="logged-in">
+            <a href="#" class=""  id="logout">Exit</a>
           </li>
-          <li class="logged-in" style="display: none">
+          <li class="logged-in">
             <a
               href="#"
-              class="red-text modal-trigger"
+              class="" modal-trigger"
               data-target="modal-create"
               >Create Article</a
             >
           </li>
-          <li class="logged-out" style="display: none">
+          <li class="logged-out">
             <a
               href="#"
-              class="grey-text modal-trigger"
+              class="modal-trigger"
               data-target="modal-login"
               >Sign In</a
             >
           </li>
-          <li class="logged-out" style="display: none">
+          <li class="logged-out">
             <a
               href="#"
-              class="grey-text modal-trigger"
+              class="modal-trigger"
               data-target="modal-signup"
-              >Üyelik Oluştur</a
+              >Create Account</a
             >
           </li>
         </ul>
       </div>
     </nav>
 
-    <!--Üyelik Oluştur Modal-->
+    <!--Create Account Modal-->
     <div id="modal-signup" class="modal">
       <div class="modal-content">
         <h4>Create Account</h4>
@@ -89,40 +92,40 @@
     <!--Login Modal-->
     <div id="modal-login" class="modal">
       <div class="modal-content">
-        <h4>Giriş Yap</h4>
+        <h4>Sign In</h4>
         <br />
         <form id="login-form">
           <div class="input-field">
             <input type="email" id="login-email" required />
-            <label for="login-email">Email Adresi</label>
+            <label for="login-email">Email Adress</label>
           </div>
           <div class="input-field">
             <input type="password" id="login-password" required />
-            <label for="login-password">Parola Oluştur</label>
+            <label for="login-password">Create Password</label>
           </div>
-          <button class="btn yellow darken-2">Giriş</button>
+          <button class="btn yellow darken-2">Sign In</button>
         </form>
       </div>
     </div>
 
-    <!--Hesap Modal-->
+    <!--Account Modal-->
     <div id="modal-account" class="modal">
       <div class="modal-content center-align">
-        <h4>Hesap Detayları</h4>
+        <h4>Account Details</h4>
         <br />
         <div class="account-details"></div>
       </div>
     </div>
 
-    <!--Makale Oluştur Modal-->
+    <!--Create Article Modal-->
     <div id="modal-create" class="modal">
       <div class="modal-content">
-        <h4>Makale Oluştur</h4>
+        <h4>Create Article</h4>
         <br />
         <form id="create-form">
           <div class="input-field">
             <input type="text" id="title" required />
-            <label for="title">Makale Başlık</label>
+            <label for="title">Article Title</label>
           </div>
           <div class="input-field">
             <textarea
@@ -131,18 +134,20 @@
               class="materialize-textarea"
               required
             ></textarea>
-            <label for="content">Makale İçerik</label>
+            <label for="content">Article Content</label>
           </div>
-          <button class="btn yellow darken-2">Oluştur</button>
+          <button class="btn yellow darken-2">Create</button>
         </form>
       </div>
     </div>
-    <!--Makale Listesi -->
+    <!--List Of Articles -->
     <div class="container" style="margin-top: 40px">
       <ul class="collapsible z-depth-0 guides" style="border: none"></ul>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
     <script src="./scripts/firebase.js"></script>
     <script src="./scripts/auth.js"></script>
     <script src="./scripts/index.js"></script>
